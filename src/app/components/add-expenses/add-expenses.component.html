@@ -1,0 +1,42 @@
+<form #addExpenseForm = 'ngForm'>
+    <div class = 'panel panel-primary container-fluid'>
+        <div class = 'panel-heading'>
+            <h3 class = 'panel-title' style="color:blueviolet;"> {{panelTitle}} </h3>
+        </div>
+
+        <div class = 'panel-body'>
+
+            <div class = 'form-group' 
+                [class.has-error]='desc.invalid && desc.touched' 
+                [class.has-success]='desc.valid'>
+                <label for="description" 
+                        class='control-label' style="color:blueviolet;"> Description </label>
+                <input required 
+                        id="description" 
+                         type = 'text' 
+                        class="form-control" 
+                         name = 'desc' [(ngModel)] = 'selectedExpense.Desc' 
+                        #desc = 'ngModel'>
+                <span class='help-block' 
+                    *ngIf='desc.invalid && desc.touched'>
+                    Description is required
+                </span>
+            </div>
+
+            <div class = 'form-group'>
+                <label for="amount" style="color:blueviolet;"> Amount </label>
+                <input required id="amount" type = 'text' class="form-control" name = 'amt' [(ngModel)] = 'selectedExpense.Amount'>
+            </div>
+
+            <div class = 'form-group'>
+                <label for="type" style="color:blueviolet;"> Type </label>
+                <input required id="type" type = 'text' class="form-control" name = 'type' [(ngModel)] = 'selectedExpense.Type'>
+            </div>
+
+        </div>
+
+        <div class = 'panel-footer'>
+            <button type="submit" class = 'btn btn-primary' (click) = 'addExpense()' [disabled]='addExpenseForm.invalid'> Add </button>
+        </div>
+    </div>    
+</form>
